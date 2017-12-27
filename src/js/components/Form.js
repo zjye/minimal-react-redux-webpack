@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import uuidv1 from "uuid";
 import { addArticle } from "../actions/index";
 
@@ -22,7 +23,7 @@ class ConnectedForm extends Component {
   }
 
   handleChange(event) {
-    this.setState({ title: event.target.value });
+    this.setState({ [event.target.id]: event.target.value });
   }
 
   handleSubmit(event) {
@@ -56,5 +57,9 @@ class ConnectedForm extends Component {
 }
 
 const Form = connect(null, mapDispatchToProps)(ConnectedForm);
+
+ConnectedForm.propTypes = {
+  addArticle: PropTypes.func.isRequired
+};
 
 export default Form;
